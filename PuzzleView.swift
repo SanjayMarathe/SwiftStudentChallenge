@@ -16,7 +16,7 @@ struct PuzzleView: View {
 
     var body: some View {
         ZStack {
-            StyleGuide.background.ignoresSafeArea()
+            CosmicBackground()
             layoutContent
             completionOverlay
         }

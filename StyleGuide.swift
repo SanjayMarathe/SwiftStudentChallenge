@@ -94,3 +94,58 @@ extension View {
         modifier(TagGlowModifier(color: color, isSelected: isSelected))
     }
 }
+
+// MARK: - Cosmic Background (game screens)
+
+struct CosmicBackground: View {
+    var body: some View {
+        ZStack {
+            LinearGradient(
+                stops: [
+                    .init(color: Color(red: 0.05, green: 0.03, blue: 0.12), location: 0.0),
+                    .init(color: StyleGuide.background,                      location: 0.30),
+                    .init(color: Color(red: 0.18, green: 0.09, blue: 0.34), location: 0.65),
+                    .init(color: Color(red: 0.10, green: 0.05, blue: 0.22), location: 1.0),
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+
+            CosmicStarField()
+        }
+    }
+}
+
+private struct CosmicStarField: View {
+    @State private var animate = false
+
+    private let stars: [(x: CGFloat, y: CGFloat, size: CGFloat, delay: Double)] = (0..<60).map { i in
+        let x = CGFloat((i * 173 + 37) % 100) / 100
+        let y = CGFloat((i * 97 + 13) % 100) / 100
+        let size = CGFloat((i * 31 + 7) % 4) * 0.4 + 0.5
+        let delay = Double(i % 15) * 0.22
+        return (x, y, size, delay)
+    }
+
+    var body: some View {
+        GeometryReader { geo in
+            ForEach(0..<stars.count, id: \.self) { i in
+                let star = stars[i]
+                Circle()
+                    .fill(.white)
+                    .frame(width: star.size, height: star.size)
+                    .position(x: star.x * geo.size.width, y: star.y * geo.size.height)
+                    .opacity(animate ? Double((i * 53 + 17) % 10) / 10.0 * 0.55 + 0.1 : 0.04)
+                    .animation(
+                        .easeInOut(duration: Double((i * 41 + 19) % 15) / 10.0 + 1.2)
+                            .repeatForever(autoreverses: true)
+                            .delay(star.delay),
+                        value: animate
+                    )
+            }
+        }
+        .ignoresSafeArea()
+        .onAppear { animate = true }
+    }
+}

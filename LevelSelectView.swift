@@ -14,7 +14,7 @@ struct LevelSelectView: View {
             .padding(.horizontal, StyleGuide.padding)
             .padding(.bottom, 40)
         }
-        .background(StyleGuide.background)
+        .background { CosmicBackground() }
         .navigationTitle("")
         .toolbar(.hidden, for: .navigationBar)
         .onAppear {
