@@ -1,9 +1,9 @@
 import SwiftUI
 
 enum TagCategory: String, Sendable {
-    case structural = "Structure"
-    case typography = "Typography"
-    case media = "Media"
+    case structural = "Containers"
+    case typography = "Text"
+    case media = "Pictures"
 }
 
 enum TagType: String, CaseIterable, Sendable, Codable {

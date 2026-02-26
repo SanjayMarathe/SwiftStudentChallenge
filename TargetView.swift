@@ -5,7 +5,7 @@ struct TargetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("Target", systemImage: "target")
+            Label("Goal", systemImage: "target")
                 .font(StyleGuide.captionFont)
                 .foregroundStyle(.white.opacity(0.5))
 
@@ -16,7 +16,6 @@ struct TargetView: View {
                 .clipShape(RoundedRectangle(cornerRadius: StyleGuide.smallCornerRadius))
         }
         .padding(StyleGuide.padding)
-        .background(StyleGuide.surface)
-        .clipShape(RoundedRectangle(cornerRadius: StyleGuide.cornerRadius))
+        .holoPanelStyle()
     }
 }

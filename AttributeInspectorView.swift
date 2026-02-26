@@ -23,7 +23,7 @@ private struct InspectorContent: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             headerRow
-            Divider().overlay(.white.opacity(0.1))
+            Divider().overlay(StyleGuide.galacticCyan.opacity(0.2))
             textSection
             fontSizeSection
             colorSection
@@ -31,13 +31,12 @@ private struct InspectorContent: View {
         }
         .padding(StyleGuide.padding)
         .frame(width: 280)
-        .background(StyleGuide.surface)
-        .clipShape(RoundedRectangle(cornerRadius: StyleGuide.cornerRadius))
+        .holoPanelStyle()
     }
 
     private var headerRow: some View {
         HStack {
-            Text("Inspector")
+            Text("Block Settings")
                 .font(StyleGuide.headingFont)
                 .foregroundStyle(.white)
             Spacer()

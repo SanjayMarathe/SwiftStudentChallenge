@@ -5,7 +5,7 @@ struct TreeDisplayView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("DOM Tree", systemImage: "list.bullet.indent")
+            Label("Your Build", systemImage: "list.bullet.indent")
                 .font(StyleGuide.captionFont)
                 .foregroundStyle(.white.opacity(0.5))
 
@@ -13,8 +13,7 @@ struct TreeDisplayView: View {
         }
         .padding(StyleGuide.padding)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(StyleGuide.surface)
-        .clipShape(RoundedRectangle(cornerRadius: StyleGuide.cornerRadius))
+        .holoPanelStyle()
     }
 
     @ViewBuilder
@@ -27,7 +26,7 @@ struct TreeDisplayView: View {
     }
 
     private var emptyDropZone: some View {
-        DropZoneView(label: "Drop a tag here to start")
+        DropZoneView(label: "Drop a block here to start")
             .dropDestination(for: String.self) { items, _ in
                 handleDrop(items: items, parentID: nil)
             }
@@ -126,7 +125,7 @@ struct TreeNodeView: View {
                 TreeNodeView(node: child, depth: depth + 1, puzzleState: puzzleState)
             }
 
-            DropZoneView(label: "Nest inside \(node.tagType.displayName)", compact: true)
+            DropZoneView(label: "Drop inside \(node.tagType.displayName)", compact: true)
                 .padding(.leading, CGFloat(depth + 1) * 20)
                 .dropDestination(for: String.self) { items, _ in
                     guard let raw = items.first, let tag = TagType(rawValue: raw) else { return false }

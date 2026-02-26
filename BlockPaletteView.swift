@@ -13,7 +13,7 @@ struct BlockPaletteView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Label("Tag Palette", systemImage: "tray.full.fill")
+            Label("Building Blocks", systemImage: "tray.full.fill")
                 .font(StyleGuide.captionFont)
                 .foregroundStyle(.white.opacity(0.5))
 
@@ -33,8 +33,8 @@ struct BlockPaletteView: View {
             }
         }
         .padding(StyleGuide.padding)
-        .background(StyleGuide.surface)
-        .clipShape(RoundedRectangle(cornerRadius: StyleGuide.cornerRadius))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .holoPanelStyle()
     }
 }
 

@@ -64,7 +64,7 @@ struct CompletionOverlayView: View {
 
     private var successDetail: some View {
         VStack(spacing: 8) {
-            Text("Generated HTML")
+            Text("Your Code!")
                 .font(StyleGuide.captionFont)
                 .foregroundStyle(.white.opacity(0.5))
 

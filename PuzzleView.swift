@@ -5,6 +5,7 @@ struct PuzzleView: View {
     let appState: AppState
 
     @State private var puzzleState: PuzzleState
+    @State private var show3DPreview = false
     @Environment(\.dismiss) private var dismiss
 
     init(level: LevelData, appState: AppState) {
@@ -37,7 +38,7 @@ struct PuzzleView: View {
 
     private func landscapeLayout(width: CGFloat) -> some View {
         HStack(spacing: StyleGuide.padding) {
-            leftPanel.frame(width: width * 0.42)
+            leftPanel.frame(width: width * 0.50)
             rightPanel
         }
         .padding(StyleGuide.padding)
@@ -56,8 +57,24 @@ struct PuzzleView: View {
     private var leftPanel: some View {
         VStack(spacing: StyleGuide.padding) {
             TargetView(targetTree: level.targetTree)
-            LivePreviewView(rootNodes: puzzleState.rootNodes)
+            previewPicker
+            if show3DPreview {
+                DOMSceneView(
+                    rootNodes: puzzleState.rootNodes,
+                    selectedNodeID: puzzleState.selectedNodeID
+                )
+            } else {
+                LivePreviewView(rootNodes: puzzleState.rootNodes)
+            }
         }
+    }
+
+    private var previewPicker: some View {
+        Picker("Preview Mode", selection: $show3DPreview) {
+            Text("2D").tag(false)
+            Text("3D").tag(true)
+        }
+        .pickerStyle(.segmented)
     }
 
     private var rightPanel: some View {

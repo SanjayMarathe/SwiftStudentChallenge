@@ -5,12 +5,12 @@ struct LivePreviewView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("Live Preview", systemImage: "eye.fill")
+            Label("Your Page", systemImage: "eye.fill")
                 .font(StyleGuide.captionFont)
                 .foregroundStyle(.white.opacity(0.5))
 
             if rootNodes.isEmpty {
-                Text("Start building to see a preview")
+                Text("Start building to see your page")
                     .font(StyleGuide.captionFont)
                     .foregroundStyle(.white.opacity(0.3))
                     .frame(maxWidth: .infinity, minHeight: 80)
@@ -27,7 +27,6 @@ struct LivePreviewView: View {
             }
         }
         .padding(StyleGuide.padding)
-        .background(StyleGuide.surface)
-        .clipShape(RoundedRectangle(cornerRadius: StyleGuide.cornerRadius))
+        .holoPanelStyle()
     }
 }
