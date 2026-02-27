@@ -34,9 +34,9 @@ struct LevelSelectView: View {
                         endPoint: animateGradient ? .bottomTrailing : .topTrailing
                     )
                 )
-                .accessibilityLabel("SpatialDOM logo")
+                .accessibilityLabel("Cosmic Code Constructor logo")
 
-            Text("SpatialDOM")
+            Text("Cosmic Code Constructor")
                 .font(StyleGuide.titleFont)
                 .foregroundStyle(.white)
 
